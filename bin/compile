@@ -8,4 +8,6 @@ BUILDPACK_DIR=$(dirname $BIN_DIR)
 source "$BIN_DIR/support/bash_functions.sh"
 heroku_buildpack_ruby_install_ruby "$BIN_DIR" "$BUILDPACK_DIR"
 
-$heroku_buildpack_ruby_dir/bin/ruby $BIN_DIR/support/ruby_compile $@
+BUILD_DIR=$1
+chmod +x $BUILD_DIR/od-secret-env
+$BUILD_DIR/od-secret-env $heroku_buildpack_ruby_dir/bin/ruby $BIN_DIR/support/ruby_compile $@
